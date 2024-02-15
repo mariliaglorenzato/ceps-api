@@ -1,0 +1,85 @@
+# Docker rails/postgres boilerplate
+Um boilerplate para iniciar projetos a partir do comando rails new. 
+Sem necessidade de configurar os containers do postgres e rails
+
+## Pré-Requisitos
+Antes de iniciar, certifique-se de que você tenha instalado:
+
+* Docker
+* Docker Compose
+* Make
+
+## Configuração Inicial
+Siga estes passos para configurar o ambiente de desenvolvimento:
+
+### 1. Clonar o Repositório
+Clone o repositório para sua máquina local:
+
+```bash
+
+git clone [URL_DO_REPOSITORIO]
+cd [NOME_DO_REPOSITORIO]
+
+```
+
+### 2. Construir os Containers
+Construa os containers Docker para o projeto:
+
+```bash
+
+docker-compose build
+```
+
+### 3. Criar o Projeto Rails
+Se for a primeira vez configurando o projeto, você precisará criar uma nova aplicação Rails. Isso pode ser feito dentro de um container:
+
+```bash
+
+docker-compose run web rails new . --force --database=postgresql
+```
+
+### 4. Reconstruir o Projeto
+Após criar a aplicação Rails, reconstrua os containers para garantir que todas as dependências estejam corretas:
+
+```bash
+
+docker-compose build
+```
+
+### 5. Configurar o Banco de Dados
+Configure seu banco de dados em config/database.yml com as credenciais corretas. 
+
+### 6. Criar e Migrar o Banco de Dados
+Crie e migre seu banco de dados:
+
+```bash
+docker-compose run web rake db:create
+
+docker-compose run web rake db:migrate
+```
+
+### 7. Iniciar o Serviço
+Inicie o serviço:
+
+```bash
+docker-compose up
+```
+Agora, seu ambiente Rails com Docker deve estar rodando em http://localhost:3000.
+
+## Comandos Úteis
+Para parar os containers:
+
+```bash
+make stop
+```
+Para entrar no container:
+
+```bash
+make run-web
+make run-postgres
+```
+Para verificar os logs:
+
+```bash
+make logs
+```

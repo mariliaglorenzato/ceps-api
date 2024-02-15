@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  postgres:
+    build: 
+      dockerfile: Dockerfile-postgresql
+    container_name: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+    networks:
+      local-network:
+        ipv4_address: 172.23.0.13
+
+    env_file:
+      - .env
+  rails:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    image: ceps-api
+    container_name: rails
+    tty: true 
+    ports:
+      - '3000:3000'
+    env_file: 
+      - .env
+    volumes:
+      - .:/ceps-api
+      - gems:/usr/local/bundle/
+    depends_on:
+      - postgres
+    external_links:
+      - postgres
+    networks:
+      local-network:
+        ipv4_address: 172.23.0.15
+
+networks: 
+  local-network:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.23.0.0/24"
+
+volumes:
+  postgres_data:
+  gems:
+
