@@ -19,6 +19,9 @@ gem "pg", "~> 1.5", ">= 1.5.4"
 # style guides
 gem "rubocop", "~> 1.60", ">= 1.60.2"
 
+# notations for models
+gem "annotate", "~> 3.2"
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 # gem "jbuilder"
 
