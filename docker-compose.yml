@@ -2,16 +2,18 @@ version: '3.8'
 services:
   postgres:
     build: 
+      context: .
       dockerfile: Dockerfile-postgresql
     container_name: postgres
+    environment:
+      POSTGRES_PASSWORD: 123456
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_PASSWORD: postgres
+    ports:
+      - '5432:5432'
     networks:
       local-network:
         ipv4_address: 172.23.0.13
-
     env_file:
       - .env
   rails:
@@ -32,6 +34,10 @@ services:
       - postgres
     external_links:
       - postgres
+    environment:
+        POSTGRES_USER: userM
+        POSTGRES_PASSWORD: 123456
+        POSTGRES_HOST: postgres
     networks:
       local-network:
         ipv4_address: 172.23.0.15

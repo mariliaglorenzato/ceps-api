@@ -5,21 +5,25 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: sqlite3
+  adapter: pg
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  adapter: postgresql
+  encoding: unicode
+  host: postgres
+  username: userM
+  password: 123456
+  pool: 5
   timeout: 5000
-
 development:
   <<: *default
-  database: storage/development.sqlite3
+  database: ceps_api_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: storage/test.sqlite3
+  database: ceps_api_test
 
 production:
   <<: *default
-  database: storage/production.sqlite3

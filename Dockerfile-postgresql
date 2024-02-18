@@ -1,1 +1,8 @@
 FROM postgres:13.13-bullseye
+
+ENV POSTGRES_USER=userM \
+    POSTGRES_PASSWORD=123456 \
+    POSTGRES_DB=your_database_name
+
+# Expose the PostgreSQL port
+EXPOSE 5432
