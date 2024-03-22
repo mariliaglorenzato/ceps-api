@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile-postgresql
     container_name: postgres
     environment:
-      POSTGRES_PASSWORD: 123456
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -35,8 +35,8 @@ services:
     external_links:
       - postgres
     environment:
-        POSTGRES_USER: userM
-        POSTGRES_PASSWORD: 123456
+        POSTGRES_USER: ${POSTGRES_USER}
+        POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
         POSTGRES_HOST: postgres
     networks:
       local-network:
