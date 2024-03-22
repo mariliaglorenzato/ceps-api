@@ -3,7 +3,7 @@
 class CreateZipcodes < ActiveRecord::Migration[7.1]
   def change
     create_table :zipcodes do |t|
-      t.string :zipcode
+      t.string :code
       t.string :street
       t.string :neighbourhood
       t.string :city

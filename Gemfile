@@ -22,8 +22,11 @@ gem "rubocop", "~> 1.60", ">= 1.60.2"
 # notations for models
 gem "annotate", "~> 3.2"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-# gem "jbuilder"
+# pagination
+gem "kaminari", "~> 1.2", ">= 1.2.2"
+
+gem "pry"
+gem "byebug", "~> 11.1", ">= 11.1.3"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
@@ -43,7 +46,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin A  x possible
 # gem "rack-cors"
 
 group :development, :test do
