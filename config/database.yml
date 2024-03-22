@@ -18,7 +18,7 @@ development:
   <<: *default
   host: <%= ENV.fetch("POSTGRES_HOST") { "postgres" } %>
   username: <%= ENV.fetch("POSTGRES_USER") { "postgres" }  %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") { "postgres" } %>
   database: ceps_api_development
 test:
   <<: *default
