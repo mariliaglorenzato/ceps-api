@@ -9,9 +9,11 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   adapter: postgresql
   encoding: unicode
-  url: <%= ENV.fetch("DATABASE_URL") { "" } %>
   pool: 5
   timeout: 5000
+production: 
+  <<: *default
+  url: <%= ENV.fetch("DATABASE_URL") { "localhost" } %>
 development:
   <<: *default
   host: <%= ENV.fetch("POSTGRES_HOST") { postgres } %>
