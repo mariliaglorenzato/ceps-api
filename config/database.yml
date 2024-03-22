@@ -9,13 +9,14 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV.fetch("POSTGRES_HOST") { postgres } %>
-  username: <%= ENV.fetch("POSTGRES_USER") { postgres }  %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
+  url: <%= ENV.fetch("DATABASE_URL") { "" } %>
   pool: 5
   timeout: 5000
 development:
   <<: *default
+  host: <%= ENV.fetch("POSTGRES_HOST") { postgres } %>
+  username: <%= ENV.fetch("POSTGRES_USER") { postgres }  %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD") %>
   database: ceps_api_development
 test:
   <<: *default
