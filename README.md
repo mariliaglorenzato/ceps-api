@@ -30,16 +30,8 @@ make setup
 
 ```
 
-Este comando irá construir as imagens necessárias e iniciar os containers para a aplicação Rails e para o banco de dados.
+Este comando irá construir as imagens necessárias e iniciar os containers para a aplicação Rails e para o banco de dados. Também executará todos os comandos para gerar as migrações e os seeds
 
-### **Criação do Banco de Dados**
-
-Após os containers estarem em execução, abra um novo terminal e execute o seguinte comando para criar o banco de dados e executar as migrações:
-
-```bash
-docker-compose exec rails rails db:create db:migrate db:seed
-
-```
 
 ### **Utilização da API**
 

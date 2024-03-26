@@ -1,7 +1,7 @@
 setup:
-	docker compose build
+	docker compose build && docker compose up -d && docker compose exec -it rails rails db:drop db:create db:migrate db:seed
 up:
-	docker compose up -d
+	docker compose up -d 
 stop:
 	docker compose down
 start:
