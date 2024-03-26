@@ -1,85 +1,67 @@
-# Docker rails/postgres boilerplate
-Um boilerplate para iniciar projetos a partir do comando rails new. 
-Sem necessidade de configurar os containers do postgres e rails
+# **API de CEPs**
 
-## Pré-Requisitos
-Antes de iniciar, certifique-se de que você tenha instalado:
+> Info: Acesse aqui: https://ceps-api-680659a3cc00.herokuapp.com/ 
 
-* Docker
-* Docker Compose
-* Make
+Esta é uma API desenvolvida com Ruby on Rails para fornecer informações de CEPs da cidade de Caraguatatuba, São Paulo, Brasil. É possível amplicar o projeto e inserir novos ceps no banco. A API oferece dados detalhados sobre endereços correspondentes a códigos postais específicos dentro dessa região. Além disso, a estrutura da API foi pensada para facilitar sua ampliação, permitindo a inclusão de novas funcionalidades e expansão para outras localidades, se necessário.
 
-## Configuração Inicial
-Siga estes passos para configurar o ambiente de desenvolvimento:
+## **Recursos Disponíveis**
 
-### 1. Clonar o Repositório
-Clone o repositório para sua máquina local:
+- **Consulta de CEP**: Permite obter informações detalhadas sobre um CEP específico em Caraguatatuba.
+- **Lista de CEPs**: Retorna uma lista de todos os CEPs disponíveis na base de dados.
+
+## **Como Usar**
+
+### **Requisitos**
+
+- Docker
+- Docker Compose
+
+### **Configuração**
+
+1. Clone este repositório para o seu ambiente local.
+2. Navegue até o diretório do projeto.
+
+### **Construção e Inicialização do Docker**
+
+Para construir e iniciar os containers Docker, execute:
 
 ```bash
-
-git clone [URL_DO_REPOSITORIO]
-cd [NOME_DO_REPOSITORIO]
+bashCopy code
+docker-compose up --build
 
 ```
 
-### 2. Construir os Containers
-Construa os containers Docker para o projeto:
+Este comando irá construir as imagens necessárias e iniciar os containers para a aplicação Rails e para o banco de dados.
+
+### **Criação do Banco de Dados**
+
+Após os containers estarem em execução, abra um novo terminal e execute o seguinte comando para criar o banco de dados e executar as migrações:
 
 ```bash
+bashCopy code
+docker-compose exec web rails db:create db:migrate db:seed
 
-docker-compose build
 ```
 
-### 3. Criar o Projeto Rails
-Se for a primeira vez configurando o projeto, você precisará criar uma nova aplicação Rails. Isso pode ser feito dentro de um container:
+### **Utilização da API**
 
-```bash
+Com os containers em execução, a API estará disponível em **`http://localhost:3000`**.
 
-docker-compose run web rails new . --force --database=postgresql
-```
+### Rotas Disponíveis
 
-### 4. Reconstruir o Projeto
-Após criar a aplicação Rails, reconstrua os containers para garantir que todas as dependências estejam corretas:
+- **`GET /cep/:cep`** - Retorna informações detalhadas sobre o CEP especificado.
+- **`GET /ceps`** - Retorna uma lista de todos os CEPs disponíveis.
 
-```bash
+## **Contribuição**
 
-docker-compose build
-```
+Contribuições são bem-vindas! Sinta-se à vontade para propor melhorias, correções de bugs ou adicionar novos recursos. Basta seguir estas etapas:
 
-### 5. Configurar o Banco de Dados
-Configure seu banco de dados em config/database.yml com as credenciais corretas. 
+1. Faça um fork deste repositório.
+2. Crie uma branch para a sua feature (**`git checkout -b feature/MinhaFeature`**).
+3. Faça commit das suas alterações (**`git commit -m 'Adiciona nova feature'`**).
+4. Faça push para a branch (**`git push origin feature/MinhaFeature`**).
+5. Abra um Pull Request.
 
-### 6. Criar e Migrar o Banco de Dados
-Crie e migre seu banco de dados:
+## **Licença**
 
-```bash
-docker-compose run web rake db:create
-
-docker-compose run web rake db:migrate
-```
-
-### 7. Iniciar o Serviço
-Inicie o serviço:
-
-```bash
-docker-compose up
-```
-Agora, seu ambiente Rails com Docker deve estar rodando em http://localhost:3000.
-
-## Comandos Úteis
-Para parar os containers:
-
-```bash
-make stop
-```
-Para entrar no container:
-
-```bash
-make run-web
-make run-postgres
-```
-Para verificar os logs:
-
-```bash
-make logs
-```
+Este projeto está licenciado sob a MIT License.
