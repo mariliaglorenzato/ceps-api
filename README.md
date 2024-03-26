@@ -26,8 +26,7 @@ Esta é uma API desenvolvida com Ruby on Rails para fornecer informações de CE
 Para construir e iniciar os containers Docker, execute:
 
 ```bash
-bashCopy code
-docker-compose up --build
+make setup 
 
 ```
 
@@ -38,19 +37,23 @@ Este comando irá construir as imagens necessárias e iniciar os containers para
 Após os containers estarem em execução, abra um novo terminal e execute o seguinte comando para criar o banco de dados e executar as migrações:
 
 ```bash
-bashCopy code
-docker-compose exec web rails db:create db:migrate db:seed
+docker-compose exec rails rails db:create db:migrate db:seed
 
 ```
 
 ### **Utilização da API**
 
+```
+make start
+```
+
 Com os containers em execução, a API estará disponível em **`http://localhost:3000`**.
 
 ### Rotas Disponíveis
 
-- **`GET /cep/:cep`** - Retorna informações detalhadas sobre o CEP especificado.
-- **`GET /ceps`** - Retorna uma lista de todos os CEPs disponíveis.
+- **`GET /zipcodes`** - Retorna uma lista de todos os CEPs disponíveis.
+- Filtros (query params): "neighbourhood", "city"
+- Obs: Atualmente a rota /zipcodes também é a rota padrão /
 
 ## **Contribuição**
 
@@ -61,6 +64,8 @@ Contribuições são bem-vindas! Sinta-se à vontade para propor melhorias, corr
 3. Faça commit das suas alterações (**`git commit -m 'Adiciona nova feature'`**).
 4. Faça push para a branch (**`git push origin feature/MinhaFeature`**).
 5. Abra um Pull Request.
+
+O robô que busca os dados no site https://www.ruacep.com.br/sp/caraguatatuba está na pasta raíz e se chama scrapper.py
 
 ## **Licença**
 
