@@ -57,7 +57,7 @@ Contribuições são bem-vindas! Sinta-se à vontade para propor melhorias, corr
 4. Faça push para a branch (**`git push origin feature/MinhaFeature`**).
 5. Abra um Pull Request.
 
-O robô que busca os dados no site https://www.ruacep.com.br/sp/caraguatatuba está na pasta raíz e se chama scrapper.py
+O robô que busca os dados no site https://www.ruacep.com.br/sp/caraguatatuba/bairros está na pasta raíz e se chama scrapper.py
 
 ## **Licença**
 
